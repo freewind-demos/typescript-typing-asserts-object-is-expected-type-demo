@@ -1,9 +1,11 @@
-TypeScript Typing Same Shape Demo
+TypeScript Typing "asserts" Object Is Expected Type Demo
 ===========================
 
-定义一个SameShape的type helper，用于判断两个type是否拥有相同的shape（被认为是同一种type，可以互相赋值）
+```
+function assertNotNull<T>(obj: T | null): asserts obj is T {}
+```
 
-通过这个SameShape可以帮助我们在代码判断自己定义的一些复杂类型是否正确
+我觉得至少在测试里会很有用，减少 `element!` 中 `!`的需要
 
 ```
 npm install

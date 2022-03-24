@@ -1,20 +1,15 @@
-import {SameShape} from "./SameShape";
-
-// T doesn't make sense
-type MyInvalidType<T> = {}
-
-// They are actually same
-const myInvalidTypesAreSame: SameShape<MyInvalidType<string>, MyInvalidType<number>> = true
-
-// compilation error:
-// const myInvalidTypesAreSame: SameShape<MyInvalidType<string>, MyInvalidType<number>> = false
-
-type MyValidType<T> = {
-  __taggedType?: T
+function assertNotNull<T>(obj: T | null): asserts obj is T {
+  if (obj === null) {
+    throw new Error('obj is null')
+  }
 }
 
-// They are not same now
-const sameMyValidType: SameShape<MyValidType<string>, MyValidType<number>> = false
+function main() {
+  const name: string | null = 'aaa';
+  assertNotNull(name)
 
-// compilation error:
-// const sameMyValidType: SameShape<MyValidType<string>, MyValidType<number>> = true
+  // now the 'name' is not possible to be a `null`
+  console.log(name.toUpperCase())
+}
+
+main()
